@@ -58,24 +58,13 @@
             li{
                 list-style: none;
             }
-            .upload-box{
-                width: 800px;
-                display: block;
-                left:50%;
-            }
             @media (max-width:800px){
                 .main-box{
                     width: 99%;
                 }
                 .up-box{
                     width: 99%;
-                }
-                .up2-box{
-                    width: 99%;
 
-                }
-                .upload-box{
-                    width: 99%;
                 }
             }
         </style>
@@ -84,12 +73,37 @@
         <header>
             <h1 style="margin:30px;font-size: 3em; color:orange;">shared</h1>
         </header>
+        <?php
+        session_start();
+        if(isset($_SESSION["id"])){
+            $basename = basename($_SESSION["id"]);
+            $source = basename($_SESSION["passwd"]);
+            if(file_get_contents($basename."/".$basename)==$source){
+                $file_name = $_FILES['uploadfile']['name'];
+                $file_tmp_name = $_FILES['uploadfile']['tmp_name'];
+                $target_dir = $_SESSION["id"].'/down'.'/';
+                $target_file = $target_dir . basename($_FILES["uploadfile"]["name"]);
+                $chid =$_SESSION["id"];
+                if(move_uploaded_file($file_tmp_name, $target_file)){
+                }
+        ?>
         <div class="main-box" style="margin-top:75px;">
             <ul style="font-size: 2em;">
-                <li>fdfdffdfd<hr></li>
-                <li>fdfdffdfd</li>
-                <li>fdfdffdfd</li>
-                <li>fdfdffdfd</li>
+                <?php
+                $list = scandir($_SESSION["id"].'/down');
+                $download=$_SESSION["id"].'/down';
+                $pathdown=$_SESSION["id"];
+                $i = 0;
+                while($i < count($list)){
+                    $title = htmlspecialchars($list[$i]);
+                    if($list[$i] != '.') {
+                        if($list[$i] != '..') {
+                            echo "<li><a href=\"$download/$title\" style='font-size:3em;'>$title</a><hr></li>\n";
+                        }
+                    }
+                    $i = $i + 1;
+                }
+                ?>
             </ul>
         </div>
         <form action="./main.php" method="post" enctype="multipart/form-data">
@@ -100,5 +114,12 @@
                 <input type="submit" value="upload" name="submit" style="margin: auto; width: 100%;display: inline;">
             </div>
         </form>
+        <?php
+            }
+            else{
+            echo "로그인 실패";
+            }
+        }
+        ?>
     </body>
 </html>
