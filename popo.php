@@ -1,0 +1,157 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0">
+    <style>
+      header {  
+        height: 75px;
+        color: white;
+        background: teal;
+        font-weight: bold;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        left:0;
+        right: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      form{
+        padding:10px;
+      }
+      .input-box{
+        position:relative;
+        margin:10px 0;
+      }
+      .input-box > input{
+        background:transparent;
+        border:none;
+        border-bottom: solid 1px #ccc;
+        padding:20px 0px 5px 0px;
+        font-size:14pt;
+        width:100%;
+      }
+      input::placeholder{
+        color:transparent;
+      }
+      input:placeholder-shown + label{
+        color:#aaa;
+        font-size:14pt;
+        top:15px;
+      }
+      input:focus + label, label{
+        color:#8aa1a1;
+        font-size:10pt;
+        pointer-events: none;
+        position: absolute;
+        left:0px;
+        top:0px;
+        transition: all 0.2s ease ;
+        -webkit-transition: all 0.2s ease;
+        -moz-transition: all 0.2s ease;
+        -o-transition: all 0.2s ease;
+      }
+      input:focus, input:not(:placeholder-shown){
+        border-bottom: solid 1px #8aa1a1;
+        outline:none;
+      }
+      input[type=submit]{
+        background-color: #8aa1a1;
+        border:none;
+        color:white;
+        border-radius: 5px;
+        width:100%;
+        height:35px;
+        font-size: 14pt;
+        margin-top:100px;
+      }
+      #forgot{
+        text-align: right;
+        font-size:12pt;
+        color:rgb(164, 164, 164);
+        margin:10px 0px;
+      }
+      #box1{
+        border:1px solid;
+        padding:10px;
+        min-width: 200px;   
+      }
+      #box2{
+        width: 400px;
+        height: 300px;
+        padding:10px;
+        margin-right: 20px;
+        font-size: 7em;   
+      }
+      @font-face {
+        font-family: 'BMJUA';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMJUA.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+      }
+      .sdms-font{
+        font-family: 'BMJUA';/*웹 폰트 지정*/
+        color: orange;
+      }
+      #content-box{
+        display: flex;
+        margin:0px auto;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+      }
+
+      @media (max-width:800px){
+        #box2{
+          overflow:hidden;
+          text-overflow:ellipsis;
+          white-space:nowrap;
+          width: 0px;
+          height: 0px;
+        }
+        #box1{
+          width: 90%;
+        }
+        #content-box{
+          width:90%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1 style="margin:30px;font-size: 3em; color:orange;">shared</h1>
+    </header>
+
+    <div id="content-box">
+      <div id="box2" style="text-align: right;">
+        <div class="sdms-font">shared
+          <p style="font-size: 0.2em;">(Drive)</p>
+        </div>
+        
+      </div>   
+      <div id="box1">
+        <form action="shared_start.php" method="POST" >
+          <section>
+            <h1 style="text-align: center;">회원가입</h1>
+          </section>
+          <div class="input-box">
+            <input id="username" type="text" name="idj" placeholder="아이디">
+            <label for="username">아이디</label>
+          </div>
+
+          <div class="input-box">
+            <input id="password" type="password" name="pas" placeholder="비밀번호">
+            <label for="password">비밀번호</label>
+          </div>
+          <input type="submit" value="로그인">
+        </form>
+      </div>
+    </div> 
+  </body>
+</html>
